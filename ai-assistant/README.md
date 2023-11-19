@@ -1,4 +1,4 @@
-API KEY = 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
+# AI adapted from https://github.com/CodeWithHarry/JarvisAI-YouTube/tree/main
 
 could i use Scrapy to scrape for user info to use to train the ai?
 
