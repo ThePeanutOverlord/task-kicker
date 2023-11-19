@@ -1,0 +1,2 @@
+# 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
+apikey = "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"
