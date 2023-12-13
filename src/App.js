@@ -9,6 +9,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Accordion from "react-bootstrap/Accordion";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Nav from "react-bootstrap/Nav";
 
 function App() {
   const tasks = []; //TODO: fill the array and call tasks
@@ -17,7 +18,10 @@ function App() {
   return (
     //display a task
     <div className="App">
-      <Task
+      <div>
+        <Menu />
+      </div>
+      {/* <Task
         name={"task name"}
         status={"incomplete"}
         date={"00/00/0000"}
@@ -26,85 +30,133 @@ function App() {
         reward={"candy bar"}
         priority={"high"}
         habit={"false"}
-      />
+      /> */}
+      <TaskPage />
     </div>
   );
+  //header tabs
+  function Menu() {
+    //dashboard will become home once i perfect tasks
+    return (
+      <Nav fill variant="tabs" defaultActiveKey="/home">
+        <Nav.Item>
+          <Nav.Link href="link-1">Dashboard</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="/home">Tasks</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-2">Habits</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-3">Calendar</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-4">Rewards</Nav.Link>
+        </Nav.Item>
+      </Nav>
+    );
+  }
 
-  // render() {
-  //   const headingsArray = [] // data from your backend
-
-  //   return (
-  //     <div className="parentDiv">
-  //       {headingsArray.map((heading, index) => <div key={index}>{heading}</div>)}
-  //     </div>
-  //   )
-  // }
+  //   function Dashboard() {
+  //     return (
+  //       <div className="Task">
+  //         <Accordion defaultActiveKey="0">
+  //           <Accordion.Item eventKey="0">
+  //             <Accordion.Header>Daily Tasks</Accordion.Header>
+  //             <Accordion.Body>
+  //               <Row xs={1} md={4} className="g-4">
+  //                 {Array.from({ length: 4 }).map((_, idx) => (
+  //                   <Col key={idx}>
+  //                     <Card style={{ width: "18rem" }}>
+  //                       <Card.Header as="h4">{name}</Card.Header>
+  //                       <Card.Body>
+  //                         <Card.Title>Status: {status}</Card.Title>
+  //                         <Card.Text>notes/description</Card.Text>
+  //                       </Card.Body>
+  //                       <ListGroup className="list-group-flush">
+  //                         <ListGroup.Item>Date: {date}</ListGroup.Item>
+  //                         <ListGroup.Item>Repeat: {repeat}</ListGroup.Item>
+  //                         <ListGroup.Item>Priority: {priority}</ListGroup.Item>
+  //                         <ListGroup.Item>Habit? {habit}</ListGroup.Item>
+  //                         <ListGroup.Item>Reward: {reward}</ListGroup.Item>
+  //                       </ListGroup>
+  //                       <Button variant="primary">Mark as Complete</Button>
+  //                     </Card>
+  //                   </Col>
+  //                 ))}
+  //               </Row>
+  //             </Accordion.Body>
+  //           </Accordion.Item>
+  //           <Accordion.Item eventKey="1">
+  //             <Accordion.Header>To-Do</Accordion.Header>
+  //             <Accordion.Body>
+  //               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+  //               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+  //               enim ad minim veniam, quis nostrud exercitation ullamco laboris
+  //               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+  //               reprehenderit in voluptate velit esse cillum dolore eu fugiat
+  //               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+  //               sunt in culpa qui officia deserunt mollit anim id est laborum.
+  //             </Accordion.Body>
+  //           </Accordion.Item>
+  //         </Accordion>
+  //       </div>
+  //     );
+  //   }
 }
 
 export default App;
 
-function Task({ name, status, date, time, repeat, reward, priority, habit }) {
-  // const [name, setName] = useState("name");
-  // const [status, setStatus] = useState(false);
-  // const [date, setDate] = useState("00/00/0000");
-  // const [time, setTime] = useState("midday");
-  // const [repeat, setRepeat] = useState(false);
-  // const [reward, setReward] = useState(null);
-  // const [priority, setPriority] = useState("medium");
-  // const [habit, setHabit] = useState(false);
+function TaskPage() {
+  return (
+    <div>
+      
+    </div>
+    <div>
+      <Row xs='auto' md='auto' className="g-4">
+        <>
+          {Array.from({ length: 6 }).map((_, idx) => (
+            <>
+              <Col key={idx}></Col>
+              <div>
+                <Task
+                  name={"task name"}
+                  status={"incomplete"}
+                  date={"00/00/0000"}
+                  time={"morning"}
+                  repeat={"repeating"}
+                  reward={"candy bar"}
+                  priority={"high"}
+                  habit={"false"}
+                />
+              </div>
+            </>
+          ))}
+        </>
+      </Row>
+    </div>
+  );
+}
 
-  //   <h1>{name}</h1>
-  // <h2>{status}</h2>
-  // <h3>{date}</h3>
-  // <h3>{time}</h3>
-  // <h3>{repeat}</h3>
-  // <h3>{priority}</h3>
-  // <h3>{habit}</h3>
-  // <h3>{reward}</h3>//TODO we're gonna need labels for each of this or an icon maybe??
+function Task({ name, status, date, time, repeat, reward, priority, habit }) {
   return (
     <div className="Task">
-      <Accordion defaultActiveKey="0">
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>Daily Tasks</Accordion.Header>
-          <Accordion.Body >
-            <Row xs={1} md={4} className="g-4">
-              {Array.from({ length: 4 }).map((_, idx) => (
-                <Col key={idx}>
-                  <Card style={{ width: "18rem" }}>
-                  <Card.Header as="h4">{name}</Card.Header>
-                    <Card.Body>
-                      <Card.Title>Status: {status}</Card.Title>
-                      <Card.Text>
-                        notes/description 
-                      </Card.Text>
-                    </Card.Body>
-                    <ListGroup className="list-group-flush">
-                      <ListGroup.Item>Date: {date}</ListGroup.Item>
-                      <ListGroup.Item>Repeat: {repeat}</ListGroup.Item>
-                      <ListGroup.Item>Priority: {priority}</ListGroup.Item>
-                      <ListGroup.Item>Habit? {habit}</ListGroup.Item>
-                      <ListGroup.Item>Reward: {reward}</ListGroup.Item>
-                    </ListGroup>
-                    <Button variant="primary">Mark as Complete</Button>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item eventKey="1">
-          <Accordion.Header>To-Do</Accordion.Header>
-          <Accordion.Body>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
+      <Card style={{ width: "18rem" }}>
+        <Card.Header as="h4">{name}</Card.Header>
+        <Card.Body>
+          <Card.Title>Status: {status}</Card.Title>
+          <Card.Text>notes/description</Card.Text>
+        </Card.Body>
+        <ListGroup className="list-group-flush">
+          <ListGroup.Item>Date: {date}</ListGroup.Item>
+          <ListGroup.Item>Repeat: {repeat}</ListGroup.Item>
+          <ListGroup.Item>Priority: {priority}</ListGroup.Item>
+          <ListGroup.Item>Habit? {habit}</ListGroup.Item>
+          <ListGroup.Item>Reward: {reward}</ListGroup.Item>
+        </ListGroup>
+        <Button variant="primary">Mark as Complete</Button>
+      </Card>
     </div>
   );
 }
